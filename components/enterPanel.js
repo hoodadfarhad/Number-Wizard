@@ -6,80 +6,133 @@ import {
   View,
   Pressable,
   TextInput,
-  Button,
+  Keyboard
 } from 'react-native';
 
 export default function EnterPanel(props) {
 
-    const [number, setNumber] = useState('');
+  const [number, setNumber] = useState('');
 
-    function registerNumber() {
-        props.setChosen(number);
-    
-        console.log(number);
-    
-        setNumber('');
-      }
+  function registerNumber() {
+
+    if (number === '') return;
+
+    props.setChosen(number);
+
+    setNumber('');
+  }
 
   return (
     <View style={styles.container}>
 
-     
-<Text style={styles.text}>
-        Welcome to the app! Choose a Number between 1 - 99.
-      </Text>
+      <View style={styles.card}>
 
-      <TextInput
-        style={styles.input}
-        keyboardType="number-pad"
-        maxLength={2}
-        value={number}
-        onChangeText={setNumber}
-      />
-      <Button title='register' onPress={registerNumber}></Button>
+        <Text style={styles.title}>
+          Number Guessing Game
+        </Text>
 
-       
- 
+        <Text style={styles.subtitle}>
+          Choose a number between 1 - 99
+        </Text>
 
-      <StatusBar style="auto" />
+        <TextInput
+          style={styles.input}
+          keyboardType="number-pad"
+          maxLength={2}
+          value={number}
+          onChangeText={setNumber}
+          placeholder="?"
+          placeholderTextColor="#888"
+          returnKeyType="done"
+        onSubmitEditing={() => {
+          Keyboard.dismiss();}}
+        />
+
+        <Pressable
+          style={styles.button}
+          onPress={registerNumber}
+        >
+          <Text style={styles.buttonText}>
+            START GAME
+          </Text>
+        </Pressable>
+
+      </View>
+
+      <StatusBar style="light" />
+
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+
   container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 20,
+    padding: 24,
   },
 
-  text: {
-    fontSize: 22,
+  card: {
+    width: '100%',
+    backgroundColor: '#1e293b',
+    padding: 30,
+    borderRadius: 25,
+    alignItems: 'center',
+
+    shadowColor: '#000',
+    shadowOpacity: 0.25,
+    shadowRadius: 12,
+    elevation: 8,
+  },
+
+  title: {
+    fontSize: 30,
+    fontWeight: 'bold',
+    color: 'white',
+    marginBottom: 10,
     textAlign: 'center',
-    marginBottom: 20,
   },
 
+  subtitle: {
+    fontSize: 18,
+    color: '#cbd5e1',
+    marginBottom: 30,
+    textAlign: 'center',
+  },
 
   input: {
+    width: 120,
+    height: 70,
+
     borderWidth: 2,
-    borderColor: 'black',
-    width: 100,
-    fontSize: 30,
+    borderColor: '#38bdf8',
+
+    borderRadius: 18,
+
+    backgroundColor: '#0f172a',
+
+    color: 'white',
+    fontSize: 34,
+    fontWeight: 'bold',
     textAlign: 'center',
-    padding: 10,
-    borderRadius: 10,
+
+    marginBottom: 30,
   },
 
   button: {
-    backgroundColor: 'lightblue',
-    paddingVertical: 12,
-    paddingHorizontal: 25,
-    borderRadius: 10,
+    backgroundColor: '#38bdf8',
+    paddingVertical: 16,
+    paddingHorizontal: 40,
+    borderRadius: 16,
   },
 
   buttonText: {
+    color: '#0f172a',
     fontSize: 18,
     fontWeight: 'bold',
+    letterSpacing: 1,
   },
+
 });

@@ -163,89 +163,124 @@ export default function Guesser(prop) {
 
 const styles = StyleSheet.create({
 
-  container: {
-    flex: 1,
-    backgroundColor: '#121212',
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 24,
-  },
-
-  title: {
-    fontSize: 34,
-    fontWeight: 'bold',
-    color: 'white',
-    marginBottom: 40,
-  },
-
-  card: {
-    width: '100%',
-    backgroundColor: '#1e1e1e',
-    padding: 25,
-    borderRadius: 20,
-    alignItems: 'center',
-    marginBottom: 20,
-    shadowColor: '#000',
-    shadowOpacity: 0.3,
-    shadowRadius: 10,
-    elevation: 6,
-  },
-
-  label: {
-    color: '#bbbbbb',
-    fontSize: 18,
-    marginBottom: 10,
-  },
-
-  number: {
-    fontSize: 40,
-    fontWeight: 'bold',
-    color: '#4fc3f7',
-  },
-
-  guess: {
-    fontSize: 55,
-    fontWeight: 'bold',
-    color: '#81c784',
-  },
-
-  buttonContainer: {
-    flexDirection: 'row',
-    marginTop: 20,
-    gap: 15,
-  },
-
-  button: {
-    backgroundColor: '#4fc3f7',
-    paddingVertical: 14,
-    paddingHorizontal: 30,
-    borderRadius: 14,
-  },
-
-  buttonText: {
-    color: '#121212',
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
-
-  modalContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'rgba(0,0,0,0.7)',
-  },
+    container: {
+      flex: 1,
+      backgroundColor: '#0f172a',
+      justifyContent: 'center',
+      alignItems: 'center',
+      padding: 24,
+    },
   
-  modalCard: {
-    backgroundColor: 'white',
-    padding: 30,
-    borderRadius: 20,
-    alignItems: 'center',
-  },
+    title: {
+      fontSize: 36,
+      fontWeight: 'bold',
+      color: 'white',
+      marginBottom: 35,
+      letterSpacing: 1,
+    },
   
-  modalText: {
-    fontSize: 22,
-    fontWeight: 'bold',
-    color: 'black',
-  },
-
-});
+    card: {
+      width: '100%',
+      backgroundColor: '#1e293b',
+  
+      paddingVertical: 28,
+      paddingHorizontal: 20,
+  
+      borderRadius: 24,
+  
+      alignItems: 'center',
+  
+      marginBottom: 22,
+  
+      shadowColor: '#000',
+      shadowOpacity: 0.25,
+      shadowRadius: 12,
+      elevation: 8,
+    },
+  
+    label: {
+      color: '#cbd5e1',
+      fontSize: 18,
+      marginBottom: 12,
+      letterSpacing: 0.5,
+    },
+  
+    number: {
+      fontSize: 46,
+      fontWeight: 'bold',
+      color: '#38bdf8',
+    },
+  
+    guess: {
+      fontSize: 60,
+      fontWeight: 'bold',
+      color: '#818cf8',
+    },
+  
+    buttonContainer: {
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+      justifyContent: 'center',
+      marginTop: 25,
+      gap: 14,
+    },
+  
+    button: {
+      backgroundColor: '#38bdf8',
+  
+      paddingVertical: 15,
+      paddingHorizontal: 26,
+  
+      borderRadius: 16,
+  
+      shadowColor: '#38bdf8',
+      shadowOpacity: 0.25,
+      shadowRadius: 8,
+      elevation: 5,
+    },
+  
+    buttonText: {
+      color: '#0f172a',
+      fontSize: 16,
+      fontWeight: 'bold',
+      letterSpacing: 1,
+    },
+  
+    modalContainer: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: 'rgba(2,6,23,0.82)',
+      padding: 24,
+    },
+  
+    modalCard: {
+      width: '100%',
+  
+      backgroundColor: '#1e293b',
+  
+      paddingVertical: 35,
+      paddingHorizontal: 28,
+  
+      borderRadius: 28,
+  
+      alignItems: 'center',
+  
+      borderWidth: 1,
+      borderColor: '#334155',
+  
+      shadowColor: '#000',
+      shadowOpacity: 0.35,
+      shadowRadius: 14,
+      elevation: 10,
+    },
+  
+    modalText: {
+      fontSize: 28,
+      fontWeight: 'bold',
+      color: 'white',
+      textAlign: 'center',
+      marginBottom: 28,
+    },
+  
+  });
