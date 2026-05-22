@@ -5,24 +5,31 @@ import {
   Text,
   View,
   Pressable,
+  Modal,
 } from 'react-native';
 
 export default function Guesser(prop) {
 
   const [guessed, setGuessed] = useState(0);
-
+  const [rematch, setRematch] = useState(true);
+  const [summary, setSummary] = useState({
+    attempts: 1,
+    found: false,
+  });
+ 
   const [range, setRange] = useState({
     min: 1,
     max: 99,
   });
 
-  // Initial random guess
   useEffect(() => {
+
     const firstGuess =
       Math.floor(Math.random() * 99) + 1;
-
+  
     setGuessed(firstGuess);
-  }, []);
+  
+  }, [rematch]);
 
   function nextGuess(isHigher) {
 
@@ -48,10 +55,46 @@ export default function Guesser(prop) {
     if (randomNum == prop.chosen) {
       console.log('Guessed correctly!');
     }
+
+    setSummary((prev) => ({
+        ...prev,
+        attempts: prev.attempts + 1,
+      }));
+  }
+
+  function checker() {
+    if (guessed == prop.chosen) {
+        setSummary((prev)=> ({...prev, found: true}))
+    }
+  }
+
+  function tryAgain() {
+
+    prop.setChosen('');
+
   }
 
   return (
     <View style={styles.container}>
+
+        <Modal visible={summary.found} transparent={true}>
+        <View style={styles.modalContainer}>
+            <View style={styles.modalCard}>
+            <Text style={styles.modalText}>
+                Total # of attempts: {summary.attempts}
+            </Text>
+
+            <Pressable
+          style={styles.button}
+          onPress={tryAgain}
+        >
+          <Text style={styles.buttonText}>
+          tryAgain
+          </Text>
+        </Pressable>
+            </View>
+        </View>
+        </Modal>
 
       <Text style={styles.title}>
         Number Guesser
@@ -98,6 +141,15 @@ export default function Guesser(prop) {
         >
           <Text style={styles.buttonText}>
             LOWER
+          </Text>
+        </Pressable>
+
+        <Pressable
+          style={styles.button}
+          onPress={checker}
+        >
+          <Text style={styles.buttonText}>
+            Correct?
           </Text>
         </Pressable>
 
@@ -174,6 +226,26 @@ const styles = StyleSheet.create({
     color: '#121212',
     fontSize: 16,
     fontWeight: 'bold',
+  },
+
+  modalContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0,0,0,0.7)',
+  },
+  
+  modalCard: {
+    backgroundColor: 'white',
+    padding: 30,
+    borderRadius: 20,
+    alignItems: 'center',
+  },
+  
+  modalText: {
+    fontSize: 22,
+    fontWeight: 'bold',
+    color: 'black',
   },
 
 });

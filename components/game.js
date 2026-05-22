@@ -20,7 +20,7 @@ export default function Game(props) {
 
   return (
     <>
-    {chosen==''? <EnterPanel setChosen={setChosen} /> : <Guesser chosen={chosen} />}
+    {chosen==''? <EnterPanel setChosen={setChosen} /> : <Guesser chosen={chosen} setChosen={setChosen}/>}
     </>
   );
 }
