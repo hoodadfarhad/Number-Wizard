@@ -7,11 +7,13 @@ import {
   Pressable,
   Modal,
 } from 'react-native';
+import YourTurn from "./yourTurn";
 
 export default function Guesser(prop) {
 
   const [guessed, setGuessed] = useState(0);
   const [wrongMove, setWrongMove] = useState(false);
+  const [isYourTurn, setIsYourTurn] = useState(false);
   const [rematch, setRematch] = useState(true);
   const [summary, setSummary] = useState({
     attempts: 1,
@@ -97,11 +99,16 @@ export default function Guesser(prop) {
 
   function tryAgain() {
 
-    prop.setChosen('');
+    
+    setIsYourTurn(true);
 
   }
 
   return (
+
+    isYourTurn ? (
+    <YourTurn setChosen = {prop.setChosen} compAttempts={summary.attempts}/>
+  ) : (
     <View style={styles.container}>
 
         <Modal visible={summary.found} transparent={true}>
@@ -116,7 +123,7 @@ export default function Guesser(prop) {
           onPress={tryAgain}
         >
           <Text style={styles.buttonText}>
-          tryAgain
+          Start Your Turn
           </Text>
         </Pressable>
             </View>
@@ -184,6 +191,7 @@ export default function Guesser(prop) {
       <StatusBar style="light" />
 
     </View>
+  )
   );
 }
 
