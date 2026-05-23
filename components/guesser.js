@@ -62,11 +62,14 @@ export default function Guesser(prop) {
       }));
   }
 
-  function checker() {
-    if (guessed == prop.chosen) {
-        setSummary((prev)=> ({...prev, found: true}))
-    }
-  }
+  useEffect(() => {
+   
+        if (guessed == prop.chosen) {
+            setSummary((prev)=> ({...prev, found: true}))
+        }
+
+  }, [guessed]);
+ 
 
   function tryAgain() {
 
@@ -144,14 +147,6 @@ export default function Guesser(prop) {
           </Text>
         </Pressable>
 
-        <Pressable
-          style={styles.button}
-          onPress={checker}
-        >
-          <Text style={styles.buttonText}>
-            Correct?
-          </Text>
-        </Pressable>
 
       </View>
 
