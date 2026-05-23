@@ -11,6 +11,7 @@ import {
 export default function Guesser(prop) {
 
   const [guessed, setGuessed] = useState(0);
+  const [wrongMove, setWrongMove] = useState(false);
   const [rematch, setRematch] = useState(true);
   const [summary, setSummary] = useState({
     attempts: 1,
@@ -32,6 +33,29 @@ export default function Guesser(prop) {
   }, [rematch]);
 
   function nextGuess(isHigher) {
+
+
+    if (isHigher === true && guessed > prop.chosen) {
+
+        setWrongMove(true);
+      
+        setTimeout(() => {
+          setWrongMove(false);
+        }, 2000);
+      
+        return;
+      }
+      
+      if (isHigher === false && guessed < prop.chosen) {
+      
+        setWrongMove(true);
+      
+        setTimeout(() => {
+          setWrongMove(false);
+        }, 2000);
+      
+        return;
+      }
 
     let newMin = range.min;
     let newMax = range.max;
@@ -129,8 +153,12 @@ export default function Guesser(prop) {
 
       <View style={styles.buttonContainer}>
 
-        <Pressable
-          style={styles.button}
+      <Pressable
+        style={[
+            styles.button,
+            wrongMove && styles.buttonError
+          ]}
+
           onPress={() => nextGuess(true)}
         >
           <Text style={styles.buttonText}>
@@ -139,7 +167,10 @@ export default function Guesser(prop) {
         </Pressable>
 
         <Pressable
-          style={styles.button}
+          style={[
+            styles.button,
+            wrongMove && styles.buttonError
+          ]}
           onPress={() => nextGuess(false)}
         >
           <Text style={styles.buttonText}>
@@ -155,6 +186,7 @@ export default function Guesser(prop) {
     </View>
   );
 }
+
 
 const styles = StyleSheet.create({
 
@@ -233,6 +265,11 @@ const styles = StyleSheet.create({
       shadowRadius: 8,
       elevation: 5,
     },
+
+    buttonError: {
+        backgroundColor: '#ef4444',
+        shadowColor: '#ef4444',
+      },
   
     buttonText: {
       color: '#0f172a',
